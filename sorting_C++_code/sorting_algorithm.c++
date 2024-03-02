@@ -18,7 +18,7 @@ double randomPivot(double arr[], int low, int high) {
 }
 
 int partition(double arr[], int low, int high) {
-    double pivot = randomPivot(arr, low, high);
+    double pivot = arr[high];
     int i = low - 1;
     int j = high + 1;
     while (true) {
