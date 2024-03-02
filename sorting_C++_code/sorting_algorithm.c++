@@ -2,9 +2,6 @@
 #include<chrono>
 using namespace std;
 using namespace std::chrono;
-//Quick sort
-void heapSort_GPT(double arr[], int n);
-void heapify_GPT(double arr[], int n, int i);
 
 bool sorted(double arr[]){
     for(int i=1;i<1000000;i++)
@@ -12,7 +9,7 @@ bool sorted(double arr[]){
             return 0;
     return 1;
 }
-
+//Quick sort
 double randomPivot(double arr[], int low, int high) {
     srand(time(NULL));
     int random = low + rand() % (high - low);
