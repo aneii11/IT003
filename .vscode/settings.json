@@ -1,6 +1,10 @@
 {
     "cmake.configureOnOpen": false,
     "files.associations": {
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp"
     }
 }

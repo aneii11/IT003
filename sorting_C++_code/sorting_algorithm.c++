@@ -2,10 +2,10 @@
 #include<chrono>
 using namespace std;
 using namespace std::chrono;
-
+const int N = 1000000;
 bool sorted(double arr[]){
-    for(int i=1;i<1000000;i++)
-        if( arr[i] > arr[i+1] )
+    for(int i=1;i<N;i++)
+        if( arr[i-1] > arr[i] )
             return 0;
     return 1;
 }
@@ -18,7 +18,7 @@ double randomPivot(double arr[], int low, int high) {
 }
 
 int partition(double arr[], int low, int high) {
-    double pivot = arr[high];
+    double pivot = arr[low + (high - low)/2];
     int i = low - 1;
     int j = high + 1;
     while (true) {
@@ -110,12 +110,12 @@ void mergesort(double arr[], int l, int r) {
         merge(arr, l, m, r);
     }
 }
-double test[1000000];
+double test[N];
 
 void load_data(string filename){
     ifstream inp;
     inp.open(filename);
-    for(int i=0;i<1000000;i++)
+    for(int i=0;i<N;i++)
         inp >> test[i];
 }
 
@@ -130,32 +130,34 @@ int main(){
         if(i == 3)
             cout << "Merge Sort:\n";
         for(int j = 1; j <= 10; j++){
-            string f_name = "test " + to_string(j);
+            string f_name = "/home/an3ii/IT003/test_data/test " + to_string(j);
             load_data(f_name);
             if(i == 0){
                 auto start = high_resolution_clock::now();
-                sort(test, test+1000000);
+                sort(test, test+N);
                 auto stop = high_resolution_clock::now();
                 auto duration = duration_cast<milliseconds>(stop - start);
+                //for(int k=0;k<10;k++)
+                    //cout << test [k];
                 cout<< "Test "<< j << ": " << duration.count() << "ms\t Sorted: "<< sorted(test) << "\n";
             }
             if(i == 1){
                 auto start = high_resolution_clock::now();
-                quickSort(test,0,1000000-1);
+                quickSort(test,0,N-1);
                 auto stop = high_resolution_clock::now();
                 auto duration = duration_cast<milliseconds>(stop - start);
                 cout<< "Test "<< j << ": " << duration.count() << "ms\t Sorted: "<<sorted(test)<< "\n";
             }
             if(i == 2){
                 auto start = high_resolution_clock::now();
-                heapsort(test,1000000);
+                heapsort(test,N);
                 auto stop = high_resolution_clock::now();
                 auto duration = duration_cast<milliseconds>(stop - start);
                 cout<< "Test "<< j << ": " << duration.count() << "ms\t Sorted: "<< sorted(test) << '\n';
             }
             if(i == 3){
                 auto start = high_resolution_clock::now();
-                mergesort(test,0,1000000-1);
+                mergesort(test,0,N-1);
                 auto stop = high_resolution_clock::now();
                 auto duration = duration_cast<milliseconds>(stop - start);
                 cout<< "Test "<< j << ": " << duration.count() << "ms\t Sorted: "<<sorted(test)<< '\n';
